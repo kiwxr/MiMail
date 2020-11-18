@@ -1,3 +1,7 @@
+const path = require('path');
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 //vue.config.js配置
 //官网链接
 //https://cli.vuejs.org/zh/config/#vue-config-js
@@ -44,7 +48,19 @@ module.exports = {
   // 默认 true,
   //如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
   productionSourceMap: true,
+  chainWebpack: (config) => {
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('api',resolve('src/api'))
+      .set('assets',resolve('src/assets'))
+      .set('components',resolve('src/components'))
+      .set('utils',resolve('src/utils'))
+      .set('common',resolve('src/common'))
+      .set('network',resolve('src/network'))
+      .set('view',resolve('src/view'))
+    // 这里只写了两个个，你可以自己再加，按这种格式.set('', resolve(''))
 
+  },
   devServer: {
     // 所有 webpack-dev-server 的选项都支持 https://webpack.js.org/configuration/dev-server/
     //中文 https://www.webpackjs.com/configuration/dev-server/

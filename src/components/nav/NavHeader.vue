@@ -12,7 +12,7 @@
         <div class="top-bar-user">
           <a href="javascript:;">登录</a>
           <a href="javascript:;">注册</a>
-          <a href="javascript:;">购物车</a>
+          <a href="javascript:;" class="my-cart"><sapn class="icon-cart"></sapn>购物车</a>
         </div>
       </div>
     </div>
@@ -44,6 +44,20 @@
           display: inline-block;
           color: #B0B0B0;
           margin-right: 17px;
+        }
+        .my-cart{
+          width: 110px;
+          background-color: #FF6600;
+          color: #ffffff;
+          text-align: center;
+          .icon-cart{
+            display: inline-block;
+            width: 16px;
+            height: 12px;
+            background: url("../../../src/assets/icon-cart.png") no-repeat center;
+            background-size: contain;
+            margin-right: 4px;
+          }
         }
       }
     }
