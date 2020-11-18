@@ -1,0 +1,53 @@
+{
+  "name": "mimail",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --mode=development",
+    "build": "vue-cli-service build --mode=production",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "mockjs": "^1.1.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-unit-mocha": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
+    "axios": "^0.21.0",
+    "chai": "^4.1.2",
+    "element-ui": "^2.14.0",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-axios": "^3.1.3",
+    "vue-cookie": "^1.1.4",
+    "vue-lazyload": "^1.3.3",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "description": "使用Vue全家桶高仿小米商城",
+  "main": "babel.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiwxr/MiMail.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "kiwxr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kiwxr/MiMail/issues"
+  },
+  "homepage": "https://github.com/kiwxr/MiMail#readme"
+}

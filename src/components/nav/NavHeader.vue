@@ -1,0 +1,52 @@
+<template>
+  <div id="header">
+    <div class="nav-top-bar">
+      <div class="container">
+        <div class="top-bar-menu">
+          <!--  javascript:; 防止页面刷新-->
+          <a href="javascript:;">小米商城</a>
+          <a href="javascript:;">MUI</a>
+          <a href="javascript:;">云服务</a>
+          <a href="javascript:;">协议规则</a>
+        </div>
+        <div class="top-bar-user">
+          <a href="javascript:;">登录</a>
+          <a href="javascript:;">注册</a>
+          <a href="javascript:;">购物车</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-header"></div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "NavHeader"
+  }
+</script>
+
+<style scoped lang="less">
+  #header{
+    .nav-top-bar{
+      height: 39px;
+      line-height: 39px;
+      background-color: #333333;
+      color: #B0B0B0;
+      .container{
+        width: 1226px;
+        margin-right: auto;
+        margin-left: auto;
+        display: flex;
+        justify-content: space-between;
+        /*align-items: center;*/
+        a{
+          display: inline-block;
+          color: #B0B0B0;
+          margin-right: 17px;
+        }
+      }
+    }
+  }
+
+</style>
