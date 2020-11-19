@@ -10,9 +10,11 @@
           <a href="javascript:;">协议规则</a>
         </div>
         <div class="top-bar-user">
-          <a href="javascript:;">登录</a>
-          <a href="javascript:;">注册</a>
-          <a href="javascript:;" class="my-cart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" v-if="username">{{username}}</a>
+          <a href="javascript:;" v-if="!username" @click="login">登录</a>
+          <a href="javascript:;" v-if="username">我的订单</a>
+          <a href="javascript:;" v-if="!username">注册</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
         </div>
       </div>
     </div>
@@ -26,60 +28,16 @@
             <span>小米手机</span>
             <div class="children">
               <ul>
-                <li class="product">
-                  <a href="" target="_blank">
+                <li class="product" v-for="(item,index) in phoneList" :key="index">
+                  <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
+                      <img :src="item.mainImage" :alt="item.subtitle">
                     </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
+                    <div class="product-name">{{item.name}}</div>
+                    <div class="product-price">{{item.price | currency}}</div>
                   </a>
                 </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
-                    </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
-                    </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
-                    </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
-                    </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
-                  </a>
-                </li>
-                <li class="product">
-                  <a href="" target="_blank">
-                    <div class="product-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b11742a0be47f9d97bb6a13ea580018d.png?thumb=1&w=160&h=110&f=webp&q=90" alt="小米10至尊纪念版">
-                    </div>
-                    <div class="product-name">小米10至尊纪念版</div>
-                    <div class="product-price">5299元起</div>
-                  </a>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -218,13 +176,60 @@
 </template>
 
 <script>
+  import {request} from "@/api/index.js"
   export default {
-    name: "NavHeader"
+    name: "NavHeader",
+    data(){
+      return{
+        username: '',
+        phoneList:[]
+      }
+    },
+    filters:{
+      currency(val){
+        if(!val){
+          return '0.00'
+        }else {
+          return '￥'+val.toFixed(2)+'元'
+        }
+      }
+    },
+    mounted() {
+      this.getProductList(100012).then(res => {
+        console.log(res)
+       if(res.list.length > 6){
+         this.phoneList = res.list.slice(0,6)
+         // console.log(this.phoneList)
+       }else{
+         this.phoneList = res.list
+         // console.log(this.phoneList)
+       }
+
+      })
+    },
+    methods:{
+      //网络请求
+      getProductList(categoryId){
+        return request({
+          url: "/products",
+          params:{
+            categoryId,
+            pageSize:6
+          }
+        })
+      },
+      //跳转
+      login(){
+        this.$router.push('/login')
+      },
+      goToCart(){
+        this.$router.push('/cart')
+      }
+    }
   }
 </script>
 
 <style scoped lang="less">
-  @import "~assets/css/base.less";
   @import "~assets/css/minixs.less";
   @import "~assets/css/config.less";
   #header{
@@ -316,6 +321,7 @@
               border-top: 1px solid #E5E5E5;
               box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
               transition: height .5s,opacity .1s;
+              background-color: #ffffff;
               z-index: 10;
               .product{
                 position: relative;

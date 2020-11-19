@@ -6,4 +6,5 @@
 
 <style lang="less">
 @import "assets/css/reset.css";
+@import "assets/css/base.less";
 </style>

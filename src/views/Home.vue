@@ -1,14 +1,15 @@
 <template>
   <div id="home">
-    <nav-header></nav-header>
+    <nav-header/>
     <router-view/>
-    <nav-footer></nav-footer>
+    <nav-footer/>
   </div>
 </template>
 
 <script>
   import NavHeader from "../components/nav/NavHeader";
   import NavFooter from "../components/nav/NavFooter";
+  import ServiceBar from "../components/nav/ServiceBar";
   export default {
     name: "Home",
     components: {NavFooter, NavHeader}

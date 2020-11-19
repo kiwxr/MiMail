@@ -77,7 +77,8 @@ module.exports = {
     },
     proxy: {         //代理
       "/api": {
-        target: "http://localhost:3000",
+        // target: " https://www.easy-mock.com/mock/5fb65cdebae16b281b2fe1b6/mymimall",
+        target: "http://mall-pre.springboot.cn/",
         pathRewrite: {"^/api" : ""},    //重写路径
       }
     },
