@@ -1,0 +1,12 @@
+.flex(@hov:space-between,@col:center){
+  display: flex;
+  justify-content: @hov;
+  align-items: @col;
+}
+.backImg(@width:0,@height:0,@img:'',@size:contain){
+  display: inline-block;
+  width: @width;
+  height: @height;
+  background: url(@img) no-repeat center;
+  background-size: @size;
+}
