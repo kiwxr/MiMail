@@ -31,7 +31,7 @@
                 <li class="product" v-for="(item,index) in phoneList" :key="index">
                   <a :href="'/#/product/'+item.id" target="_blank">
                     <div class="product-img">
-                      <img :src="item.mainImage" :alt="item.subtitle">
+                      <img v-lazy="item.mainImage" :alt="item.subtitle">
                     </div>
                     <div class="product-name">{{item.name}}</div>
                     <div class="product-price">{{item.price | currency}}</div>
@@ -322,7 +322,7 @@
               box-shadow: 0px 7px 6px 0px rgba(0,0,0,0.11);
               transition: height .5s,opacity .1s;
               background-color: #ffffff;
-              z-index: 10;
+              z-index: 15;
               .product{
                 position: relative;
                 float: left;

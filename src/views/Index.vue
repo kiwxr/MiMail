@@ -57,12 +57,12 @@
       </div>
       <div class="ads-box">
         <a :href="'/#/product/'+item.id" v-for="(item,index) in adList" :key="index">
-          <img :src="item.img" alt="">
+          <img v-lazy="item.img" alt="">
         </a>
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/6c907ad4004b32609a589bdada203443.jpg?thumb=1&w=1226&h=120&f=webp&q=90" alt="">
+          <img v-lazy="'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/6c907ad4004b32609a589bdada203443.jpg?thumb=1&w=1226&h=120&f=webp&q=90'" alt="">
         </a>
       </div>
     </div>
@@ -71,7 +71,7 @@
         <h2>手机</h2>
         <div class="wrapper">
           <div class="banner-left">
-            <a href="/#/product/30"><img src="//cdn.cnbj1.fds.api.mi-img.com/mi-mall/574c6643ab91c6618bfb2d0e2c761d0b.jpg?thumb=1&w=234&h=614&f=webp&q=90" alt=""></a>
+            <a href="/#/product/30"><img v-lazy="'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/574c6643ab91c6618bfb2d0e2c761d0b.jpg?thumb=1&w=234&h=614&f=webp&q=90'" alt=""></a>
           </div>
 
           <div class="list-box">
@@ -79,13 +79,13 @@
               <div class="item" v-for="(item,j) in arr" :key="j">
                 <span class="phone-status" :class="{'new-pro':j%2==0,'kill-pro':item.id==31}">新品</span>
                 <div class="item-img">
-                  <img :src="item.mainImage" alt="">
+                  <img v-lazy="item.mainImage" alt="">
                 </div>
 
                 <div class="item-info">
                   <h2>{{item.name}}</h2>
                   <p>{{item.subtitle}}</p>
-                  <p class="phone-price">{{item.price}}</p>
+                  <p class="phone-price" @click="addCart(item.id)">{{item.price}}</p>
                 </div>
               </div>
             </div>
@@ -94,6 +94,17 @@
       </div>
     </div>
     <service-bar/>
+    <model title="提示"
+           sure-text="查看购物车"
+           btn-type="1"
+           model-type="middle"
+           :show-model="showModel"
+           @submit="goToCart"
+           @cancel="showModel=false">
+      <template v-slot:body>
+        <p>商品添加成功！</p>
+      </template>
+    </model>
   </div>
 </template>
 
@@ -102,12 +113,14 @@
   import 'swiper/swiper-bundle.css'
   import ServiceBar from "../components/nav/ServiceBar";
   import {request} from "../api";
+  import Model from "../components/Model";
 
   export default {
     name: "Index",
-    components: {ServiceBar,swiper,swiperSlide},
+    components: {Model, ServiceBar,swiper,swiperSlide},
     data(){
       return{
+        showModel: false,
         SwiperOptions:{
           autoplay: true,
           loop: true,
@@ -202,24 +215,47 @@
             img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8a43378b96501d7e227a9018fe2668c5.jpg?w=632&h=340',
           }
         ],
-        phoneList:[[1,1,1,1],[1,1,1,1]]
+        phoneList:[]
       }
     },
     mounted() {
-      this.getProductList().then(res => {
-        this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
-        console.log(this.phoneList)
-      })
+      this.toGetProductList()
     },
     methods:{
+      //接口设置
+      //获取商品数据
       getProductList(){
         return request({
           url:'/products',
           params:{
             categoryId:100012,
-            pageSize:8
+            pageSize:14
           }
         })
+      },
+      //加入购物车
+      addCart(productId){
+        this.showModel = true
+        // return request({
+        //   url:'carts',
+        //   data:{
+        //     productId,
+        //     selected: true
+        //   }
+        // })
+      },
+      //调用接口
+      toGetProductList(){
+        this.getProductList().then(res => {
+          res.list = res.list.slice(6.14)
+          this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
+          console.log(this.phoneList)
+        })
+      },
+
+      //跳转
+      goToCart(){
+        this.$router.push('cart')
       }
     }
   }
