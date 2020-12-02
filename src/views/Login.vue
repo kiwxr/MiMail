@@ -11,13 +11,13 @@
               <span class="checked">账号登录</span><span class="sep-line">|</span><span class="checked">扫码登录</span>
             </h3>
             <div class="input">
-              <input type="text" placeholder="请输入账号">
+              <input type="text" placeholder="请输入账号" v-model="username">
             </div>
             <div class="input">
-              <input type="password" placeholder="请输入密码">
+              <input type="password" placeholder="请输入密码" v-model="password">
             </div>
             <div class="btn-box">
-              <a href="javascript:;" class="btn">登录</a>
+              <a href="javascript:;" class="btn" @click="toLogin">登录</a>
             </div>
             <div class="tips">
               <div class="sms">手机短信登录/注册</div>
@@ -42,7 +42,7 @@
           <span>隐私政策</span>
         </div>
         <p>
-          小米公司版权所有-京ICP备10046444-<img src="https://account.xiaomi.com/static/res/9204d06/account-static/respassport/acc-2014/img/ghs.png" alt="">-京ICP证110507号
+          小米公司版权所有-京ICP备10046444-<img src="https://account.xiaomi.com/static/res/9204d06/account-static/respassport/acc-2014/img/ghs.png" alt="">京公网安备11010802020134号-京ICP证110507号
         </p>
       </div>
     </div>
@@ -51,8 +51,57 @@
 
 <script>
   import NavFooter from "../components/nav/NavFooter";
+  import {request} from "../api";
+
   export default {
     name: "Login",
+    data(){
+      return{
+        username:'kiwxr',
+        password:'kiwxr',
+        userId:''
+      }
+    },
+    methods: {
+      toLogin() {
+        let {username, password} = this
+        this.login(username, password).then(res => {
+          this.$cookie.set('userId',res.id,{expires:'1M'})
+          this.$store.dispatch('saveUserName',res.username)
+          this.$router.push('/index')
+        })
+      },
+      toRegister() {
+        this.register().then(res => {
+          console.log(res)
+        })
+      },
+
+      //网络请求
+      login(username, password) {
+        return request({
+          url:'/user/login',
+          method:'post',
+          headers:{"Content-Type":"application/json;charset=UTF-8"},
+          data:{
+            username,
+            password
+          }
+        })
+      },
+      register(){
+        return request({
+          url:'/user/register',
+          method: 'post',
+          headers:{"Content-Type":"application/json;charset=UTF-8"},
+          data:{
+            username:"kiwxr",
+            password:"kiwxr",
+            email:"kiwxr@qq.com"
+          }
+        })
+      },
+    }
   }
 </script>
 

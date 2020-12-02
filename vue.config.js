@@ -73,7 +73,7 @@ module.exports = {
     host: "0.0.0.0",  //服务器外部可访问,
     port: 8888,       //指定要监听请求的端口号
     headers: {        //在所有响应中添加首部内容
-      "X-Custom-Foo": "bar"
+      // "X-Custom-Foo": "bar"
     },
     proxy: {         //代理
       "/api": {

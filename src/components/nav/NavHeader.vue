@@ -14,7 +14,7 @@
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
           <a href="javascript:;" v-if="username">我的订单</a>
           <a href="javascript:;" v-if="!username">注册</a>
-          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
         </div>
       </div>
     </div>
@@ -181,7 +181,6 @@
     name: "NavHeader",
     data(){
       return{
-        username: '',
         phoneList:[]
       }
     },
@@ -193,6 +192,14 @@
           return '￥'+val.toFixed(2)+'元'
         }
       }
+    },
+    computed:{
+      username(){ //解决延迟问题
+        return this.$store.state.username
+      },
+      cartCount(){
+        return this.$store.state.cartCount
+      },
     },
     mounted() {
       this.getProductList(100012).then(res => {
@@ -252,6 +259,7 @@
           background-color: #FF6600;
           color: #ffffff;
           text-align: center;
+          margin-right: 0;
           .icon-cart{
             .backImg(16px,12px,'~assets/icon-cart.png');
             margin-right: 4px;

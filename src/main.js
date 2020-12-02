@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 
 import VueLazyload from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 
 Vue.config.productionTip = false
 
@@ -12,6 +13,7 @@ if(mock){
   require('../src/mock/api.js')
 }
 
+Vue.use(VueCookie)
 Vue.use(VueLazyload, {
   // preLoad: 1.3,
   // error: 'dist/error.png',
