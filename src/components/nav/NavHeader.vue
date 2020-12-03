@@ -272,31 +272,6 @@
         position: relative;
         height: 112px;
         .flex();
-        .header-logo{
-          display: inline-block;
-          width: 55px;
-          height: 55px;
-          overflow: hidden;
-          a{
-            display: inline-block;
-            width: 110px;
-            height: 55px;
-            &:before{
-              content: "";
-              .backImg(55px,55px,"~assets/mi-logo.png");
-              transition: margin .3s;
-            }
-            &:after{
-              content: "";
-              .backImg(55px,55px,"~assets/mi-home.png");
-            }
-            &:hover:before{
-              margin-left: -55px;
-              transition: margin .3s;
-            }
-          }
-          background-color: #FF6600;
-        }
         .header-menu{
           display: inline-block;
           width: 643px;
