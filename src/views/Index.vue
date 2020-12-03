@@ -148,7 +148,7 @@
             img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ebff5f5c1f52f2dbdd611897adbefd4.jpg?thumb=1&w=1226&h=460&f=webp&q=90'
           },
           {
-            id:'',
+            id:'46',
             img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0ef4160c861b998239bce9adb82341e7.jpg?thumb=1&w=1226&h=460&f=webp&q=90'
           },
         ],
@@ -235,14 +235,17 @@
       },
       //加入购物车
       addCart(productId){
-        this.showModel = true
-        // return request({
-        //   url:'carts',
-        //   data:{
-        //     productId,
-        //     selected: true
-        //   }
-        // })
+        request({
+          url: '/carts',
+          method:'post',
+          data:{
+            productId,
+            "selected": true
+          }
+        }).then(res => {
+          this.showModel = true
+          res && res.cartProductVoList && this.$store.dispatch('saveCartCount',res.cartProductVoList.length)
+        })
       },
       //调用接口
       toGetProductList(){

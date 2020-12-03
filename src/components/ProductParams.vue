@@ -50,7 +50,7 @@
         line-height: 70px;
         border: 1px solid #e5e5e5;
         background-color: white;
-
+        z-index: 10;
         &.is_fixed{
             position: fixed;
             top: 0;

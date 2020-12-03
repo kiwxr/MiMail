@@ -203,7 +203,7 @@
     },
     mounted() {
       this.getProductList(100012).then(res => {
-        console.log(res)
+        // console.log(res)
        if(res.list.length > 6){
          this.phoneList = res.list.slice(0,6)
          // console.log(this.phoneList)

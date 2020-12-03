@@ -105,7 +105,7 @@
       },
       buy(){
         let id = this.$route.params.id;
-        this.$router.push(`detail/${id}`)
+        this.$router.push(`/detail/${id}`)
       },
 
       closeVideo(){
