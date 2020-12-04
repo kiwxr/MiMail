@@ -2,16 +2,12 @@
 // import VueAxios from "vue-axios";
 import axios from  'axios'
 import qs from 'querystring'
+import {Message} from "element-ui";
 
 // Vue.use(VueAxios,axios)
 
 export function request(config) {
   const instance = axios.create({
-    // baseURL: 'http://152.136.185.210:8000/api/n3',
-    // baseURL: 'http://www.baidu.com',
-    // baseURL: 'http://39.101.167.59:5000/',
-    // baseURL: 'http://192.168.11.4:8848/',
-    // baseURL: 'http://127.0.0.1:8080/',
     baseURL : '/api', //跨域使用
     timeout: 5000,
 
@@ -49,7 +45,7 @@ export function request(config) {
         return Promise.reject(res)
       }
     }else {
-      alert(res.msg)
+      Message.warning(res.msg)
       return Promise.reject(res)
     }
   },error => {

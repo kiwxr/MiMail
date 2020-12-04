@@ -65,6 +65,7 @@
   import ServiceBar from "../components/nav/ServiceBar";
 
   import {request} from "../api";
+  import {Message} from "element-ui";
 
   export default {
     name: "Cart",
@@ -101,13 +102,13 @@
                 selected = item.productSelected
         if(type == '-'){
           if(quantity == 1){
-            alter('商品至少保留一件')
+            Message.warning('商品至少保留一件')
             return
           }
           quantity--
         }else if(type == '+'){
           if(quantity >= item.productStock){
-            alter('商品库存不足')
+            Message.warning('商品库存不足')
             return
           }
           quantity++
@@ -134,13 +135,16 @@
       //删除商品
       delProduct(item){
         request({url:`/carts/${item.productId}`,method:'delete'}).
-        then(res => this.renderData(res))
+        then(res => {
+          Message.success('删除成功')
+          this.renderData(res)
+        })
       },
       //购物车下单
       order(){
         let ieCheck = this.list.every(item => !item.productSelected)
         if(ieCheck){
-          alert('请选择一件商品')
+          Message.warning('请选择一件商品')
         }else {
           this.$router.push('/order/confirm')
         }

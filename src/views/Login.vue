@@ -52,6 +52,7 @@
 <script>
   import NavFooter from "../components/nav/NavFooter";
   import {request} from "../api";
+  import {Message} from "element-ui";
 
   export default {
     name: "Login",
@@ -63,12 +64,21 @@
       }
     },
     methods: {
+      getCartCount(){
+        request({
+          'url': '/carts/products/sum',
+          method: 'get'
+        }).then((res=0) => {
+          this.$store.dispatch('saveCartCount',res)
+          this.$router.push('/index')
+        })
+      },
       toLogin() {
         let {username, password} = this
         this.login(username, password).then(res => {
-          this.$cookie.set('userId',res.id,{expires:'1M'})
+          this.$cookie.set('userId',res.id,{expires:'Session'})
           this.$store.dispatch('saveUserName',res.username)
-          this.$router.push('/index')
+          this.getCartCount()
         })
       },
       toRegister() {

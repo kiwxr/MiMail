@@ -6,6 +6,9 @@ import store from './store'
 import VueLazyload from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
 
+import 'element-ui/lib/theme-chalk/index.css';
+
+
 Vue.config.productionTip = false
 
 const mock = false
