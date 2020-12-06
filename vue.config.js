@@ -46,11 +46,12 @@ module.exports = {
 
   // productionSourceMap
   // 默认 true,
-  //如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。
-  productionSourceMap: true,
+  //如果你不需要生产环境的 source map，可以将其设置为 false 以加速生产环境构建。 //false 看不见项目源码
+  productionSourceMap: false,
   configureWebpack: config => {
   },
   chainWebpack: config => {
+    config.plugins.delete("prefetch") //删除预加载
     config.resolve.alias
       .set('@', resolve('src'))
       .set('api',resolve('src/api'))

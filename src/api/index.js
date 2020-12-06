@@ -49,7 +49,9 @@ export function request(config) {
       return Promise.reject(res)
     }
   },error => {
-
+    let res = error.response
+    Message.error(res.data.messsage)
+    return Promise.reject(error)
   })
 
   return instance(config)

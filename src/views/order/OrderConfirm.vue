@@ -1,5 +1,10 @@
 <template>
   <div id="order-confirm">
+    <order-header title="订单确认">
+      <template v-slot:tip>
+        买买买！！！
+      </template>
+    </order-header>
     <div class="wrapper">
       <div class="container">
         <div class="order-box">
@@ -130,10 +135,11 @@
   import {request} from "../../api";
   import {Message} from "element-ui";
   import Model from "../../components/Model";
+  import OrderHeader from "../../components/order/OrderHeader";
 
   export default {
     name: "OrderConfirm",
-    components: {Model},
+    components: {OrderHeader, Model},
     data(){
       return{
         list:[],
