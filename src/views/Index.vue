@@ -250,6 +250,7 @@
       //调用接口
       toGetProductList(){
         this.getProductList().then(res => {
+          console.log(res)
           res.list = res.list.slice(6.14)
           this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
           console.log(this.phoneList)

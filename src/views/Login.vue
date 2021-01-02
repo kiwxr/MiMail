@@ -8,20 +8,34 @@
       <div class="container">
           <div class="login-form">
             <h3 class="login-nav">
-              <span class="checked">账号登录</span><span class="sep-line">|</span><span class="checked">扫码登录</span>
+              <span class="checked" :class="{'active':show=='login'}" @click="showLogin">账号登录</span>
+              <span class="sep-line">|</span>
+              <span class="checked" :class="{'active':show=='register'}" @click="showRegister">账号注册</span>
             </h3>
+            <div class="input" v-if="show=='register'">
+              <input type="text" placeholder="请输入邮箱" v-model="email">
+            </div>
             <div class="input">
               <input type="text" placeholder="请输入账号" v-model="username">
             </div>
             <div class="input">
               <input type="password" placeholder="请输入密码" v-model="password">
             </div>
+            <div class="input" v-if="show=='register'">
+              <input type="password" placeholder="请再次输入密码" v-model="re_password">
+            </div>
             <div class="btn-box">
-              <a href="javascript:;" class="btn" @click="toLogin">登录</a>
+              <a href="javascript:;" class="btn" @click="toLogin" v-if="show=='login'">登录</a>
+              <a href="javascript:;" class="btn" @click="toRegister" v-else>注册</a>
             </div>
             <div class="tips">
-              <div class="sms">手机短信登录/注册</div>
-              <div class="reg"><a href="javascript:;">立即注册</a><span>|</span><a href="javascript:;">忘记密码？</a></div>
+              <div class="sms" >手机短信登录/注册</div>
+              <div class="reg" v-if="show=='login'"><a href="javascript:;">立即注册</a>
+                <span>|</span>
+                <a href="javascript:;">忘记密码？</a>
+              </div>
+              <div class="reg" v-else><a href="javascript:;">已有账号，立即登录。</a>
+              </div>
             </div>
             <div class="icon-box">
               <div class="icon"><a href="javascript:;"></a></div>
@@ -58,12 +72,25 @@
     name: "Login",
     data(){
       return{
-        username:'kiwxr',
-        password:'kiwxr',
-        userId:''
+        username:'',
+        password:'',
+        re_password:'',
+        email:'',
+        userId:'',
+        show: this.$route.query.type
       }
     },
     methods: {
+      showRegister(){
+        this.show = 'register'
+        this.username = ''
+        this.password = ''
+      },
+      showLogin(){
+        this.show = 'login'
+        this.username = ''
+        this.password = ''
+      },
       getCartCount(){
         request({
           'url': '/carts/products/sum',
@@ -82,9 +109,33 @@
         })
       },
       toRegister() {
-        this.register().then(res => {
-          console.log(res)
-        })
+        if(this.registerCheck()){
+          this.register(this.username,this.password,this.email).then(res => {
+            Message.success("注册成功")
+            this.toLogin()
+          })
+        }
+        else {
+          this.email=''
+          this.username = ''
+          this.password = ''
+          this.re_password = ''
+        }
+      },
+      registerCheck(){
+        if(this.email==''){
+          Message.error('邮箱不能为空')
+          return false
+        }
+        if(this.username==''){
+          Message.error('邮箱不能为空')
+          return false
+        }
+        if(this.password != this.re_password){
+          Message.error("俩次输入密码不一致")
+          return false
+        }
+        return true
       },
 
       //网络请求
@@ -99,15 +150,15 @@
           }
         })
       },
-      register(){
+      register(username,password,email){
         return request({
           url:'/user/register',
           method: 'post',
           headers:{"Content-Type":"application/json;charset=UTF-8"},
           data:{
-            username:"kiwxr",
-            password:"kiwxr",
-            email:"kiwxr@qq.com"
+            username,
+            password,
+            email
           }
         })
       },
@@ -153,9 +204,12 @@
             .checked{
               margin: 0 30px;
               &:hover{
-                color: #ff6600;
+                /*color: #ff6600;*/
                 cursor: pointer;
               }
+            }
+            .active{
+              color: #ff6600;
             }
           }
           .input{
@@ -205,7 +259,7 @@
             justify-content: space-around;
             width: 200px;
             height: 26px;
-            margin: 120px auto 0;
+            margin: 20px auto 0;
             .icon{
               box-sizing: border-box;
               overflow: hidden;

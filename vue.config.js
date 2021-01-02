@@ -80,6 +80,7 @@ module.exports = {
       "/api": {
         // target: " https://www.easy-mock.com/mock/5fb65cdebae16b281b2fe1b6/mymimall",
         target: "http://mall-pre.springboot.cn/",
+        // target: "http://192.168.1.167:8080/", //可见东
         pathRewrite: {"^/api" : ""},    //重写路径
       }
     },
