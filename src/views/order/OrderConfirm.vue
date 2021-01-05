@@ -229,7 +229,7 @@
             Message.error(errMsg)
             return
           }
-          data={receiverName, receiverMobile, receiverProvince, receiverCity, receiverDistrict, receiverAddress, receiverZip}
+          data={receiverName, receiverMobile,receiverPhone:receiverMobile, receiverProvince, receiverCity, receiverDistrict, receiverAddress, receiverZip}
           console.log(receiverName)
           console.log(data)
         }

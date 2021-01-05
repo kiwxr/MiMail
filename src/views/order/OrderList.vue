@@ -75,9 +75,13 @@
     methods:{
       getOrderList(){
         request({
-          url:'/orders'
+          url:'/orders',
+          params:{
+            pageNum:1,
+            pageSize:12
+          }
         }).then(res => {
-          // this.list = res.list
+          this.list = res.list
           this.loading = false
         })
       },

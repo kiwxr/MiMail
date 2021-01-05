@@ -50,7 +50,7 @@ export function request(config) {
     }
   },error => {
     let res = error.response
-    Message.error(res.data.messsage)
+    Message.error(res.data.message?res.data.message:res.message)
     return Promise.reject(error)
   })
 

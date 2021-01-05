@@ -7,36 +7,54 @@
             <li class="menu-item">
               <a href="javascript:;">手机 电话卡</a>
               <div class="children">
-                <ul v-for="(item,index) in menuList" :key="index">
+                <ul v-for="(item,index) in menuList.list_1" :key="index">
                   <li v-for="(li_item,li_index) in item" :key="li_index">
                     <a :href="'/#/product/'+(li_item?li_item.id:40)">
-                      <img :src="li_item?li_item.img:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
+                      <img :src="li_item?li_item.mainImage:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
                       {{li_item?li_item.name:'Redmi K30 Pro'}}
                     </a>
                   </li>
                 </ul>
               </div>
               <a href="javascript:;">电视 盒子</a>
+              <div class="children"></div>
+              <a href="javascript:;">笔记本 平板</a>
               <div class="children">
-                <ul v-for="(item,index) in menuList" :key="index">
+                <ul v-for="(item,index) in menuList.list_1" :key="index">
                   <li v-for="(li_item,li_index) in item" :key="li_index">
                     <a :href="'/#/product/'+(li_item?li_item.id:40)">
-                      <img :src="li_item?li_item.img:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
+                      <img :src="li_item?li_item.mainImage:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
                       {{li_item?li_item.name:'Redmi K30 Pro'}}
                     </a>
                   </li>
                 </ul>
               </div>
-              <a href="javascript:;">笔记本 平板</a>
-              <div class="children"></div>
               <a href="javascript:;">家电 插线板</a>
               <div class="children"></div>
               <a href="javascript:;">出现 穿戴</a>
-              <div class="children"></div>
+              <div class="children">
+                <ul v-for="(item,index) in menuList.list_1" :key="index">
+                  <li v-for="(li_item,li_index) in item" :key="li_index">
+                    <a :href="'/#/product/'+(li_item?li_item.id:40)">
+                      <img :src="li_item?li_item.mainImage:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
+                      {{li_item?li_item.name:'Redmi K30 Pro'}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <a href="javascript:;">智能 路由器</a>
               <div class="children"></div>
               <a href="javascript:;">电源 配件</a>
-              <div class="children"></div>
+              <div class="children">
+                <ul v-for="(item,index) in menuList.list_1" :key="index">
+                  <li v-for="(li_item,li_index) in item" :key="li_index">
+                    <a :href="'/#/product/'+(li_item?li_item.id:40)">
+                      <img :src="li_item?li_item.mainImage:'//cdn.cnbj1.fds.api.mi-img.com/mi-mall/92b463f8e502e5d26ac488a252a05b58.jpg?thumb=1&w=40&h=40&f=webp&q=90'" alt="">
+                      {{li_item?li_item.name:'Redmi K30 Pro'}}
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <a href="javascript:;">生活 箱包</a>
               <div class="children"></div>
             </li>
@@ -152,51 +170,16 @@
             img:'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0ef4160c861b998239bce9adb82341e7.jpg?thumb=1&w=1226&h=460&f=webp&q=90'
           },
         ],
-        menuList:[
-          [
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-          ],  [
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-            {
-              id:30,
-              img: '//cdn.cnbj1.fds.api.mi-img.com/mi-mall/5ca871528d3420622f21f25be7aba58c.png?thumb=1&w=40&h=40&f=webp&q=9',
-              name: '小米 10'
-            },
-          ], [0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]
-        ],
+        menuList:{
+          list_1:[],
+          list_2:[],
+          list_3:[],
+          list_4:[],
+          list_5:[],
+          list_6:[],
+          list_7:[],
+          list_8:[],
+        },
         adList: [
           {
             id:33,
@@ -220,16 +203,17 @@
     },
     mounted() {
       this.toGetProductList()
+      this.getMenuList()
     },
     methods:{
       //接口设置
       //获取商品数据
-      getProductList(){
+      getProductList(categoryId, pageSize){
         return request({
           url:'/products',
           params:{
-            categoryId:100012,
-            pageSize:14
+            categoryId,
+            pageSize
           }
         })
       },
@@ -249,14 +233,16 @@
       },
       //调用接口
       toGetProductList(){
-        this.getProductList().then(res => {
-          console.log(res)
+        this.getProductList(100012,14).then(res => {
           res.list = res.list.slice(6.14)
           this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)]
-          console.log(this.phoneList)
         })
       },
-
+      getMenuList(){
+        this.getProductList(100012,14).then(res => {
+          this.menuList.list_1 = [res.list.slice(0,4),res.list.slice(4,8)]
+        })
+      },
       //跳转
       goToCart(){
         this.$router.push('cart')
@@ -301,7 +287,6 @@
                   display: block;
                 }
               }
-
             }
 
             .children{
@@ -314,6 +299,9 @@
               height: 451px;
               border: 1px solid @colorH;
               background-color: white;
+              &:hover{
+                display: block;
+              }
               ul{
                 .flex();
                 height: 75px;

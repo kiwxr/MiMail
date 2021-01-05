@@ -77,7 +77,7 @@
         re_password:'',
         email:'',
         userId:'',
-        show: this.$route.query.type
+        show: this.$route.query.type?this.$route.query.type:'login'
       }
     },
     methods: {

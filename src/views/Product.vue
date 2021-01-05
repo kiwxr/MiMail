@@ -6,7 +6,7 @@
       </template>
     </product-params>
     <div class="content">
-      <div class="item-bg-1">
+      <div class="item-bg-1" :style="`background: url(${product.mainImage}) no-repeat center;`">
         <h2>{{product.name}}</h2>
         <h3>{{product.subtitle}}</h3>
         <p>
@@ -33,7 +33,7 @@
           <swiper-slide><img src="" alt=""></swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-        <p class="desc">小米8 AI变焦双摄拍摄</p>
+        <p class="desc">{{product.subtitle}}</p>
       </div>
       <div class="item-video">
         <h2>60帧超慢动作摄影<br/>慢慢回味每一瞬间的精彩</h2>
@@ -122,10 +122,11 @@
   #product{
     .content{
       .item-bg-1{
-        background: url("https://cdn.cnbj1.fds.api.mi-img.com/product-images/redminote9/pv.jpg") no-repeat center;
-        background-size: cover;
+        background: url("https://cdn.cnbj1.fds.api.mi-img.com/product-images/redminote9/pv.jpg") no-repeat right;
+        /*background-size: cover;*/
         height: 718px;
-        text-align: center;
+        /*text-align: center;*/
+        padding-left: 100px;
         h2{
           font-size: 80px;
           padding-top: 55px;
